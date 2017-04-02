@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<dimen name="imageicon_dimen">48dp</dimen>
+    <dimen name="imageicon_margin_outscreen">-48dp</dimen>
+    <dimen name="imageicon_margin_left">30dp</dimen>
+    <dimen name="tracking_status_tv_height">70dp</dimen>
+    <dimen name="tracking_status_tv_margin_top">-70dp</dimen>
+</resources>

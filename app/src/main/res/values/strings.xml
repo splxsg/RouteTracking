@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">RouteTracking</string>
+
+    <string name="title_activity_maps">Track My Routing</string>
+    <string name="title_activity_journey">Journey</string>
+    <string name="toast_error">ERROR</string>
+
+    <string name="toast_done">DONE</string>
+    <string name="service_started">Service Started</string>
+    <string name="journey_history_title">Journey History</string>
+    <string name="tracking_status_onTracking">TRACKING</string>
+<string name="setting_menu_title">UNIT</string>
+    <string name="track_btn_start">Start Tracking</string>
+    <string name="track_btn_end">End Tracking</string>
+    <string-array name="setting_unit_radio_group">
+        <item>mile</item>
+        <item>km</item>
+    </string-array>
+</resources>
