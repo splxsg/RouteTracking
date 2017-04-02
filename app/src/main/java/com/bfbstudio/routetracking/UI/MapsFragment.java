@@ -3,41 +3,36 @@ package com.bfbstudio.routetracking.UI;
 import android.app.ProgressDialog;
 import android.content.AsyncQueryHandler;
 import android.content.BroadcastReceiver;
-import android.content.ContentUris;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+
 import android.location.Location;
-import android.net.Uri;
+
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.DialogFragment;
+
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v4.widget.SimpleCursorAdapter;
-import android.support.v7.widget.DecorToolbar;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 import com.bfbstudio.routetracking.R;
 import com.bfbstudio.routetracking.RecycleAdapter.JourneyRecycleAdapter;
@@ -45,35 +40,26 @@ import com.bfbstudio.routetracking.data.JourneyContract;
 import com.bfbstudio.routetracking.data.JourneyQuery;
 import com.bfbstudio.routetracking.rest.CustomSharedPreference;
 import com.bfbstudio.routetracking.rest.RecyclerViewItemClickListener;
-import com.bfbstudio.routetracking.rest.Utility;
+
 import com.bfbstudio.routetracking.service.TrackingService;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.LocationListener;
+
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsResult;
-import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
+
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
-import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.google.android.gms.vision.text.Text;
 
-import java.sql.Array;
-import java.text.DateFormat;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Set;
-import android.os.Handler;
+
 
 /**
  * Created by Blues on 30/03/2017.
@@ -92,9 +78,9 @@ public class MapsFragment extends Fragment implements
     private BottomSheetDialog mBottomSheetDialog;
     private BottomSheetBehavior mBottomSheetBehavior;
     private PolylineOptions mPolyLineOption;
-    private Polyline mPolyline;
-    private View rootView;
-    private View bottomSheetView;
+
+
+
     private boolean mLocationPermissionGranted;
     private Intent mServiceIntent;
     private GoogleMap mMap;
@@ -108,25 +94,29 @@ public class MapsFragment extends Fragment implements
     private CameraPosition mCameraPosition;
     private final LatLng mDefaultLocation = new LatLng(-33.8523341, 151.2106085);
     private Location mLastKnownLocation;
-    private String mLastJourneyId;
     private String mCurrentJourneyId;
     private static final String KEY_JOURNEY_ID = "KEY_JOURNEY_ID";
-    private JourneyRecycleAdapter mJourneyAdapter;
+    private static final String KEY_VIEW_STATUS = "KEY_VIEW_STATUS";
+
 
     private static final int VIEW_NORMAL_KEY = 1;
     private static final int VIEW_TRACKING_KEY = 2;
     private static final int VIEW_JOURNEY_KEY = 3;
-    private int viewStatus = VIEW_NORMAL_KEY;
+    private static final int VIEW_DEFAULT_KEY = -1;
+
+    private static final String KEY_CAMERA_POSITION = "camera_position";
+    private static final String KEY_LOCATION = "location";
+    private int viewStatus;
     private ImageButton trackingOnBtn, trackingOffBtn, historyDisplayBtn, menuBtn, settingBtn,  journeyViewOffBtn;
     private TextView trackingStatusTv, journeyInfoTv;
     ProgressDialog progressDialog;
-    private AsyncQueryHandler async;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d("oncreate","creat");
-
+        viewStatus = VIEW_DEFAULT_KEY;
         mGoogleApiClient = new GoogleApiClient.Builder(getContext())
                 .enableAutoManage(getActivity() /* FragmentActivity */,
                         this /* OnConnectionFailedListener */)
@@ -134,25 +124,36 @@ public class MapsFragment extends Fragment implements
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
+        if(savedInstanceState != null)
+        {
+            Log.d("saved",savedInstanceState.getInt(KEY_VIEW_STATUS)+"");
+            mCurrentJourneyId = savedInstanceState.getParcelable(KEY_JOURNEY_ID);
+            viewStatus = savedInstanceState.getInt(KEY_VIEW_STATUS);
+            mLastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
+            mCameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
+        }
 
 
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
+        final Bundle mapViewSaveState = new Bundle(outState);
+        mapView.onSaveInstanceState(mapViewSaveState);
+        outState.putBundle("mapViewSaveState", mapViewSaveState);
+        outState.putString(KEY_JOURNEY_ID, mCurrentJourneyId);
+        outState.putInt(KEY_VIEW_STATUS,viewStatus);
         if (mMap != null) {
-            //savedInstanceState.putBoolean(KEY_REQUESTING_LOCATION_UPDATES, mRequestingLocationUpdates);
-            // savedInstanceState.putParcelable(KEY_LOCATION, mCurrentLocation);
-            outState.putString(KEY_JOURNEY_ID, mCurrentJourneyId);
-            super.onSaveInstanceState(outState);
-          //  outState.putParcelable(KEY_CAMERA_POSITION, mMap.getCameraPosition());
-          //  outState.putParcelable(KEY_LOCATION, mLastKnownLocation);
+            outState.putParcelable(KEY_CAMERA_POSITION, mMap.getCameraPosition());
+            outState.putParcelable(KEY_LOCATION, mLastKnownLocation);
         }
+        super.onSaveInstanceState(outState);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState){
+        View rootView;
         rootView = inflater.inflate(R.layout.activity_maps, container, false);
         trackingOnBtn  = ((ImageButton)  rootView.findViewById(R.id.imagebtn_tracking_start));
         historyDisplayBtn = ((ImageButton)  rootView.findViewById(R.id.imagebtn_history));
@@ -166,14 +167,15 @@ public class MapsFragment extends Fragment implements
         query = new JourneyQuery(getActivity());
         trackingBroadCastReceiver = new TrackingBroadCastReceiver();
         mapView = (MapView) rootView.findViewById(R.id.map);
-        mapView.onCreate(savedInstanceState);
-        mapView.onResume();
+
+        mapView.onCreate(savedInstanceState != null ? savedInstanceState.getBundle("mapViewSaveState") : null);
+       mapView.onResume();
         mServiceIntent = new Intent(getContext(), TrackingService.class);
+
         View bottomSheet =  rootView.findViewById(R.id.bottom_sheet);
 
-
-
-
+        if(viewStatus == -1)
+            viewStatus = VIEW_NORMAL_KEY;
 
         mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
         mBottomSheetBehavior.setBottomSheetCallback(new BottomSheetBehavior.BottomSheetCallback() {
@@ -204,15 +206,10 @@ public class MapsFragment extends Fragment implements
             }
         });
 
-
        trackingOnBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if (!CustomSharedPreference.getServiceState()) {
-
                    startTracking();
-              //  } //else
-                    //endTracking();
             }
         });
 
@@ -224,7 +221,6 @@ public class MapsFragment extends Fragment implements
 
             }
         });
-
 
         historyDisplayBtn.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -243,10 +239,6 @@ public class MapsFragment extends Fragment implements
 
             }
         });
-
-
-
-
         return rootView;
     }
 
@@ -310,9 +302,9 @@ public class MapsFragment extends Fragment implements
 
     private void endTracking()
     {
-        Uri inserteduri;
+
         getContext().stopService(mServiceIntent);
-        inserteduri = query.insertNewJourneyRecord(
+        query.insertNewJourneyRecord(
                 mCurrentJourneyId,
                 System.currentTimeMillis()-Long.parseLong(mCurrentJourneyId)+"",
                 query.calculateDistance(mCurrentJourneyId));
@@ -384,7 +376,7 @@ public class MapsFragment extends Fragment implements
         if(viewStatus == VIEW_NORMAL_KEY || viewStatus == VIEW_TRACKING_KEY)
         getDeviceLocation();
         updateLocationUI();
-        Log.d("maponready","   ");
+        Log.d("maponready",viewStatus+"");
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener(){
             @Override
             public void onMapClick(LatLng arg0)
@@ -552,6 +544,7 @@ public class MapsFragment extends Fragment implements
     private void redrawPath(int zoomtype)
     {
         initPolyline();
+        AsyncQueryHandler async;
         final int zoomType = zoomtype;
         async = new AsyncQueryHandler(getActivity().getContentResolver()) {
             @Override
@@ -560,14 +553,12 @@ public class MapsFragment extends Fragment implements
                 new drawJourneyAsyncTask(mCursor,zoomType).execute();
             }
         };
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Fetching location data, please wait...");
-        progressDialog.setIndeterminate(false);
-        // progressDialog.setIndeterminate(true);
-        progressDialog.setCancelable(false);
-        progressDialog.show();
 
+
+        Log.d("redraw","1");
         if(mMap != null && mCurrentJourneyId!=null){
+            Log.d("redraw","2");
+            Log.d("redraw",mCurrentJourneyId);
             async.startQuery(0,null,JourneyContract.LocationEntry.CONTENT_URI,
                     null,
                     JourneyContract.LocationEntry.COLUMN_JOURNEY_ID + "=?",
@@ -575,30 +566,6 @@ public class MapsFragment extends Fragment implements
                     null);
         }
 
-
-       /* if(mMap != null && journeyId!=null) {
-            initPolyline();
-            LatLngBounds.Builder builder = new LatLngBounds.Builder();
-            Cursor mCursor = getContext().getContentResolver().query(JourneyContract.LocationEntry.CONTENT_URI,
-                    null,
-                    JourneyContract.LocationEntry.COLUMN_JOURNEY_ID + "=?",
-                    new String[]{journeyId},
-                    null);
-            if (mCursor.moveToFirst())
-                while (!mCursor.isAfterLast()) {
-                    mMap.addPolyline(mPolyLineOption.add(query.getLatLng(mCursor)));
-                    builder.include(query.getLatLng(mCursor));
-                    mCursor.moveToNext();
-                }
-                LatLngBounds bounds = builder.build();
-                switch (zoomtype)
-                {
-                    case CURRENT_POSITION_ZOOM:
-                        getDeviceLocation();
-                    case FULL_LOCATION_ZOOM:
-                        moveCameraBounds(bounds);
-                }
-        }*/
     }
 
     private void initPolyline(){
@@ -608,44 +575,58 @@ public class MapsFragment extends Fragment implements
 
 
     private void showBottomSheetDialog() {
-        if (mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-            mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
+
+        if(getActivity().getContentResolver().query(
+                JourneyContract.JourneyEntry.CONTENT_URI,
+                null,
+                null,
+                null,
+                null
+        ).getCount()==0) {
+            Toast.makeText(getContext(), "no journey", Toast.LENGTH_SHORT).show();
         }
+        else {
 
-        mBottomSheetDialog = new BottomSheetDialog(getContext());
-
-        bottomSheetView = getActivity().getLayoutInflater().inflate(R.layout.bottom_view, null);
-
-        RecyclerView recyclerView = (RecyclerView) bottomSheetView.findViewById(R.id.journey_cardview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
-        mJourneyAdapter = new JourneyRecycleAdapter(getContext(),null);
-        //recyclerView.setHasFixedSize(true);
-
-        recyclerView.setAdapter(mJourneyAdapter);
-
-        mBottomSheetDialog.setContentView(bottomSheetView);
-        mBottomSheetDialog.show();
-        mBottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
-            @Override
-            public void onDismiss(DialogInterface dialog) {
-                mBottomSheetDialog = null;
+            if (mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+                mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
             }
-        });
+            View bottomSheetView;
+            JourneyRecycleAdapter mJourneyAdapter;
+            mBottomSheetDialog = new BottomSheetDialog(getContext());
 
-        recyclerView.addOnItemTouchListener(new RecyclerViewItemClickListener(getContext(),
-                new RecyclerViewItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View v, int position) {
-                        if (position != -1) {
-                             Cursor mCursor = query.getCursor(JourneyContract.JourneyEntry.CONTENT_URI);
-                            mCursor.moveToPosition(position);
-                            mBottomSheetDialog.dismiss();
-                            mCurrentJourneyId = mCursor.getString(mCursor.getColumnIndex(JourneyContract.JourneyEntry.COLUMN_JOURNEY_ID));
-                            redrawPath(FULL_LOCATION_ZOOM);
-                            startViewJourney();
-                             }
-                    }
-                }));
+            bottomSheetView = getActivity().getLayoutInflater().inflate(R.layout.bottom_view, null);
+
+            RecyclerView recyclerView = (RecyclerView) bottomSheetView.findViewById(R.id.journey_cardview);
+            recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+            mJourneyAdapter = new JourneyRecycleAdapter(getContext());
+            //recyclerView.setHasFixedSize(true);
+
+            recyclerView.setAdapter(mJourneyAdapter);
+
+            mBottomSheetDialog.setContentView(bottomSheetView);
+            mBottomSheetDialog.show();
+            mBottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                @Override
+                public void onDismiss(DialogInterface dialog) {
+                    mBottomSheetDialog = null;
+                }
+            });
+
+            recyclerView.addOnItemTouchListener(new RecyclerViewItemClickListener(getContext(),
+                    new RecyclerViewItemClickListener.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(View v, int position) {
+                            if (position != -1) {
+                                Cursor mCursor = query.getCursor(JourneyContract.JourneyEntry.CONTENT_URI);
+                                mCursor.moveToPosition(position);
+                                mBottomSheetDialog.dismiss();
+                                mCurrentJourneyId = mCursor.getString(mCursor.getColumnIndex(JourneyContract.JourneyEntry.COLUMN_JOURNEY_ID));
+                                redrawPath(FULL_LOCATION_ZOOM);
+                                startViewJourney();
+                            }
+                        }
+                    }));
+        }
     }
 
     private class TrackingBroadCastReceiver extends BroadcastReceiver {
@@ -697,6 +678,16 @@ public class MapsFragment extends Fragment implements
         LocalBroadcastManager.getInstance(getContext()).unregisterReceiver(trackingBroadCastReceiver);
     }
 
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        getContext().stopService(mServiceIntent);
+        query.insertNewJourneyRecord(
+                mCurrentJourneyId,
+                System.currentTimeMillis()-Long.parseLong(mCurrentJourneyId)+"",
+                query.calculateDistance(mCurrentJourneyId));
+    }
+
     private void drawPath(double latitude, double longitude){
         Log.d(TAG, "draw path on "+latitude+" "+longitude);
         mMap.addPolyline(mPolyLineOption.add(new LatLng(latitude, longitude)));
@@ -710,6 +701,16 @@ private class drawJourneyAsyncTask extends AsyncTask<Void,Void, List<LatLng>>{
     Cursor mCursor;
     int zoomType;
     drawJourneyAsyncTask(Cursor mCursor, int zoomType){this.mCursor = mCursor; this.zoomType = zoomType;}
+
+    @Override
+    protected  void onPreExecute(){
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMessage("Fetching location data, please wait...");
+        progressDialog.setIndeterminate(false);
+        // progressDialog.setIndeterminate(true);
+        progressDialog.setCancelable(false);
+        progressDialog.show();
+    }
 
 
     @Override

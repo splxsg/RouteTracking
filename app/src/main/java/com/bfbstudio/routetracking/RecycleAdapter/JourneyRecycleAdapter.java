@@ -3,7 +3,6 @@ package com.bfbstudio.routetracking.RecycleAdapter;
 import android.content.Context;
 import android.database.Cursor;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,7 @@ import android.widget.TextView;
 
 import com.bfbstudio.routetracking.R;
 import com.bfbstudio.routetracking.data.JourneyContract;
-import com.bfbstudio.routetracking.data.JourneyContract.LocationEntry;
 import com.bfbstudio.routetracking.data.JourneyContract.JourneyEntry;
-import com.bfbstudio.routetracking.rest.CustomSharedPreference;
 import com.bfbstudio.routetracking.rest.Utility;
 
 /**
@@ -30,7 +27,7 @@ public class JourneyRecycleAdapter extends RecyclerView.Adapter<JourneyRecycleAd
     private final Context mContext;
 
 
-    public JourneyRecycleAdapter(Context context, View emptyview) {
+    public JourneyRecycleAdapter(Context context) {
         this.mContext = context;
         mLayoutInflater = LayoutInflater.from(context);
         mCursor = mContext.getContentResolver().query(

@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.support.design.widget.BottomSheetBehavior;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -32,7 +33,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 
-public class MapsActivity extends AppCompatActivity {
+public class MapsActivity extends AppCompatActivity implements QuitDialogFragment.NoticeDialogListener {
 
     private static final String TAG = MapsActivity.class.getSimpleName();
 
@@ -62,5 +63,33 @@ public class MapsActivity extends AppCompatActivity {
 
     }
 
+
+    @Override
+    public void onBackPressed(){
+        showNoticeDialog();
+
+    }
+
+
+    public void showNoticeDialog() {
+        // Create an instance of the dialog fragment and show it
+        DialogFragment dialog = new QuitDialogFragment();
+        dialog.show(getSupportFragmentManager(), "NoticeDialogFragment");
+    }
+
+    // The dialog fragment receives a reference to this Activity through the
+    // Fragment.onAttach() callback, which it uses to call the following methods
+    // defined by the NoticeDialogFragment.NoticeDialogListener interface
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog) {
+        // User touched the dialog's positive button
+        super.onBackPressed();
+    }
+
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog) {
+        // User touched the dialog's negative button
+        dialog.dismiss();
+    }
 
 }

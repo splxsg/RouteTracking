@@ -9,6 +9,9 @@
     <string name="service_started">Service Started</string>
     <string name="journey_history_title">Journey History</string>
     <string name="tracking_status_onTracking">TRACKING</string>
+    <string name="exit_message_general">Do you want to exit?</string>
+    <string name="exit_yes">YES</string>
+    <string name="exit_no">NO</string>
 <string name="setting_menu_title">UNIT</string>
     <string name="track_btn_start">Start Tracking</string>
     <string name="track_btn_end">End Tracking</string>
