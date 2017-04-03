@@ -19,4 +19,6 @@
         <item>mile</item>
         <item>km</item>
     </string-array>
+    <string name="bottom_sheet_no_journey_toast">No journey can be shown</string>
+    <string name="permission_denied_toast">Permission Denied</string>
 </resources>

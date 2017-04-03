@@ -36,8 +36,9 @@ import com.google.android.gms.location.LocationServices;
 public class MapsActivity extends AppCompatActivity implements QuitDialogFragment.NoticeDialogListener {
 
     private static final String TAG = MapsActivity.class.getSimpleName();
+    private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
 
-
+    private MapsFragment fragmentMap;
 
     // The entry point to Google Play services, used by the Places API and Fused Location Provider.
 
@@ -57,7 +58,7 @@ public class MapsActivity extends AppCompatActivity implements QuitDialogFragmen
             mCameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
         }*/
         setContentView(R.layout.activity_maps);
-        MapsFragment fragmentMap = new MapsFragment();
+        fragmentMap = new MapsFragment();
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.Fragment_Map, fragmentMap).commit();
 
@@ -69,6 +70,23 @@ public class MapsActivity extends AppCompatActivity implements QuitDialogFragmen
         showNoticeDialog();
 
     }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String permissions[],
+                                           @NonNull int[] grantResults) {
+
+        switch (requestCode) {
+            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    fragmentMap.onResume();
+                }
+            }
+        }
+    }
+
 
 
     public void showNoticeDialog() {

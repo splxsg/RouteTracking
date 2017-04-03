@@ -10,9 +10,7 @@ import android.os.IBinder;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.bfbstudio.routetracking.R;
 import com.bfbstudio.routetracking.data.JourneyQuery;
 import com.bfbstudio.routetracking.rest.CustomSharedPreference;
 import com.google.android.gms.common.ConnectionResult;
@@ -37,6 +35,7 @@ public class TrackingService extends Service implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
+    public static final String ACTION = "com.bfbstudio.map_v2.service.TrackingService";
     private LocationRequest mLocationRequest;
     private boolean isServiceRunning = false;
     private GoogleApiClient mGoogleApiClient;
@@ -44,7 +43,6 @@ public class TrackingService extends Service implements
     private JourneyQuery query;
     private double latitude = 0.0;
     private double longitude = 0.0;
-    public static final String ACTION = "com.bfbstudio.map_v2.service.TrackingService";
     private Location mLastKnownLocation;
     private String journeyId;
 
@@ -52,13 +50,15 @@ public class TrackingService extends Service implements
     @Override
     public void onCreate() {
         super.onCreate();
-        Log.d(TrackingService.class.getSimpleName(),"Tracking Intent Service");
-        if(isRouteTrackingOn()) {startTimeInMilliSeconds = System.currentTimeMillis();
+        Log.d(TrackingService.class.getSimpleName(), "Tracking Intent Service");
+        if (isRouteTrackingOn()) {
+            startTimeInMilliSeconds = System.currentTimeMillis();
             Log.d(TAG, "Current time " + startTimeInMilliSeconds);
-            Log.d(TAG, "Service is running");}
+            Log.d(TAG, "Service is running");
+        }
 
 
-        if(mGoogleApiClient == null){
+        if (mGoogleApiClient == null) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
                     .addConnectionCallbacks(this)
                     .addOnConnectionFailedListener(this)
@@ -68,15 +68,14 @@ public class TrackingService extends Service implements
         }
         query = new JourneyQuery(getApplicationContext());
         mLocationRequest = createLocationRequest();
-        journeyId = startTimeInMilliSeconds+"";
-       // Toast.makeText(getApplicationContext(), getString(R.string.service_started), Toast.LENGTH_SHORT).show();
+        journeyId = startTimeInMilliSeconds + "";
+        // Toast.makeText(getApplicationContext(), getString(R.string.service_started), Toast.LENGTH_SHORT).show();
 
     }
 
 
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId)
-    {
+    public int onStartCommand(Intent intent, int flags, int startId) {
         isServiceRunning = true;
         return Service.START_STICKY;
     }
@@ -93,7 +92,7 @@ public class TrackingService extends Service implements
         PendingResult<LocationSettingsResult> result = LocationServices.SettingsApi.checkLocationSettings(mGoogleApiClient, builder.build());
         result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
             @Override
-            public void onResult( LocationSettingsResult result) {
+            public void onResult(LocationSettingsResult result) {
                 final Status status = result.getStatus();
                 switch (status.getStatusCode()) {
                     case LocationSettingsStatusCodes.SUCCESS:
@@ -116,10 +115,10 @@ public class TrackingService extends Service implements
     }
 
 
-
     @Override
     public void onConnectionSuspended(int i) {
     }
+
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
     }
@@ -128,38 +127,39 @@ public class TrackingService extends Service implements
     public void onLocationChanged(Location location) {
         Log.d(TAG, "Latitude " + location.getLatitude() + " Longitude " + location.getLongitude());
         Log.d(TAG, "SERVICE RUNNING " + isServiceRunning);
-        if(isRouteTrackingOn() && startTimeInMilliSeconds == 0){
+        if (isRouteTrackingOn() && startTimeInMilliSeconds == 0) {
             startTimeInMilliSeconds = System.currentTimeMillis();
         }
-        if(isRouteTrackingOn() && startTimeInMilliSeconds > 0){
+        if (isRouteTrackingOn() && startTimeInMilliSeconds > 0) {
             latitude = location.getLatitude();
             longitude = location.getLongitude();
             Log.d(TAG, "Latitude " + latitude + " Longitude " + longitude);
             // insert values to local sqlite database
-            query.addNewLocationObject(journeyId,System.currentTimeMillis(), latitude, longitude);
+            query.addNewLocationObject(journeyId, System.currentTimeMillis(), latitude, longitude);
             // send local broadcast receiver to application components
             Intent localBroadcastIntent = new Intent(ACTION);
             localBroadcastIntent.putExtra("RESULT_CODE", "LOCAL");
-            localBroadcastIntent.putExtra("JourneyId",journeyId);
-            localBroadcastIntent.putExtra("CURRENT_LATITUDE",latitude);
-            localBroadcastIntent.putExtra("CURRENT_LONGITUDE",longitude);
+            localBroadcastIntent.putExtra("JourneyId", journeyId);
+            localBroadcastIntent.putExtra("CURRENT_LATITUDE", latitude);
+            localBroadcastIntent.putExtra("CURRENT_LONGITUDE", longitude);
             LocalBroadcastManager.getInstance(getApplicationContext()).sendBroadcast(localBroadcastIntent);
             long timeoutTracking = 2 * 60 * 60 * 1000;
-            if(System.currentTimeMillis() >= startTimeInMilliSeconds + timeoutTracking){
+            if (System.currentTimeMillis() >= startTimeInMilliSeconds + timeoutTracking) {
                 //turn of the tracking
                 CustomSharedPreference.setServiceState(false);
                 Log.d(TAG, "SERVICE HAS BEEN STOPPED");
                 this.stopSelf();
             }
         }
-        if(!isRouteTrackingOn()){
+        if (!isRouteTrackingOn()) {
             Log.d(TAG, "SERVICE HAS BEEN STOPPED 1");
             isServiceRunning = false;
             Log.d(TAG, "SERVICE STOPPED " + isServiceRunning);
             this.stopSelf();
         }
     }
-    private boolean isRouteTrackingOn(){
+
+    private boolean isRouteTrackingOn() {
         Log.d(TAG, "SERVICE STATE " + CustomSharedPreference.getServiceState());
         return CustomSharedPreference.getServiceState();
     }
@@ -177,7 +177,6 @@ public class TrackingService extends Service implements
         mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
         return mLocationRequest;
     }
-
 
 
 }

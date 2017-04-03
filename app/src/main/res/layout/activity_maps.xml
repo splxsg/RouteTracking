@@ -5,7 +5,8 @@
     android:id="@+id/Fragment_Map"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    >
 
     <FrameLayout
         android:id="@+id/mapFramelayout"

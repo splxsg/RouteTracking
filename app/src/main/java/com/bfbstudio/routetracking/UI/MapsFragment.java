@@ -9,18 +9,14 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-
 import android.location.Location;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetBehavior;
 import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.ActivityCompat;
-
 import android.support.v4.app.Fragment;
-
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,29 +29,24 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.bfbstudio.routetracking.R;
 import com.bfbstudio.routetracking.RecycleAdapter.JourneyRecycleAdapter;
 import com.bfbstudio.routetracking.data.JourneyContract;
 import com.bfbstudio.routetracking.data.JourneyQuery;
 import com.bfbstudio.routetracking.rest.CustomSharedPreference;
 import com.bfbstudio.routetracking.rest.RecyclerViewItemClickListener;
-
 import com.bfbstudio.routetracking.service.TrackingService;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
-
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
-
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.PolylineOptions;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,54 +59,46 @@ import java.util.List;
 public class MapsFragment extends Fragment implements
         OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks,
-        GoogleApiClient.OnConnectionFailedListener{
+        GoogleApiClient.OnConnectionFailedListener {
 
 
     private static final String TAG = MapsFragment.class.getSimpleName();
-    private JourneyQuery query;
-    private TrackingBroadCastReceiver trackingBroadCastReceiver;
-    private GoogleApiClient mGoogleApiClient;
-    private BottomSheetDialog mBottomSheetDialog;
-    private BottomSheetBehavior mBottomSheetBehavior;
-    private PolylineOptions mPolyLineOption;
-
-
-
-    private boolean mLocationPermissionGranted;
-    private Intent mServiceIntent;
-    private GoogleMap mMap;
-    private MapView mapView;
     private static final int DEFAULT_ZOOM = 16;
     private static final int MAX_ZOOM = 19;
     private static final int PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION = 1;
     private static final int COLOR_GREEN_ARGB = 0xff388E3C;
     private static final int CURRENT_POSITION_ZOOM = 1;
     private static final int FULL_LOCATION_ZOOM = 2;
-    private CameraPosition mCameraPosition;
-    private final LatLng mDefaultLocation = new LatLng(-33.8523341, 151.2106085);
-    private Location mLastKnownLocation;
-    private String mCurrentJourneyId;
     private static final String KEY_JOURNEY_ID = "KEY_JOURNEY_ID";
     private static final String KEY_VIEW_STATUS = "KEY_VIEW_STATUS";
-
-
     private static final int VIEW_NORMAL_KEY = 1;
     private static final int VIEW_TRACKING_KEY = 2;
     private static final int VIEW_JOURNEY_KEY = 3;
     private static final int VIEW_DEFAULT_KEY = -1;
-
     private static final String KEY_CAMERA_POSITION = "camera_position";
     private static final String KEY_LOCATION = "location";
-    private int viewStatus;
-    private ImageButton trackingOnBtn, trackingOffBtn, historyDisplayBtn, menuBtn, settingBtn,  journeyViewOffBtn;
-    private TextView trackingStatusTv, journeyInfoTv;
+    private final LatLng mDefaultLocation = new LatLng(-33.8523341, 151.2106085);
     ProgressDialog progressDialog;
-
+    private JourneyQuery query;
+    private TrackingBroadCastReceiver trackingBroadCastReceiver;
+    private GoogleApiClient mGoogleApiClient;
+    private BottomSheetDialog mBottomSheetDialog;
+    private BottomSheetBehavior mBottomSheetBehavior;
+    private PolylineOptions mPolyLineOption;
+    private boolean mLocationPermissionGranted;
+    private Intent mServiceIntent;
+    private GoogleMap mMap;
+    private MapView mapView;
+    private CameraPosition mCameraPosition;
+    private Location mLastKnownLocation;
+    private String mCurrentJourneyId;
+    private int viewStatus;
+    private ImageButton trackingOnBtn, trackingOffBtn, historyDisplayBtn, menuBtn, settingBtn, journeyViewOffBtn;
+    private TextView trackingStatusTv, journeyInfoTv;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.d("oncreate","creat");
         viewStatus = VIEW_DEFAULT_KEY;
         mGoogleApiClient = new GoogleApiClient.Builder(getContext())
                 .enableAutoManage(getActivity() /* FragmentActivity */,
@@ -124,16 +107,12 @@ public class MapsFragment extends Fragment implements
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
                 .build();
-        if(savedInstanceState != null)
-        {
-            Log.d("saved",savedInstanceState.getInt(KEY_VIEW_STATUS)+"");
+        if (savedInstanceState != null) {
             mCurrentJourneyId = savedInstanceState.getParcelable(KEY_JOURNEY_ID);
             viewStatus = savedInstanceState.getInt(KEY_VIEW_STATUS);
             mLastKnownLocation = savedInstanceState.getParcelable(KEY_LOCATION);
             mCameraPosition = savedInstanceState.getParcelable(KEY_CAMERA_POSITION);
         }
-
-
     }
 
     @Override
@@ -142,7 +121,7 @@ public class MapsFragment extends Fragment implements
         mapView.onSaveInstanceState(mapViewSaveState);
         outState.putBundle("mapViewSaveState", mapViewSaveState);
         outState.putString(KEY_JOURNEY_ID, mCurrentJourneyId);
-        outState.putInt(KEY_VIEW_STATUS,viewStatus);
+        outState.putInt(KEY_VIEW_STATUS, viewStatus);
         if (mMap != null) {
             outState.putParcelable(KEY_CAMERA_POSITION, mMap.getCameraPosition());
             outState.putParcelable(KEY_LOCATION, mLastKnownLocation);
@@ -152,15 +131,15 @@ public class MapsFragment extends Fragment implements
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState){
+                             Bundle savedInstanceState) {
         View rootView;
         rootView = inflater.inflate(R.layout.activity_maps, container, false);
-        trackingOnBtn  = ((ImageButton)  rootView.findViewById(R.id.imagebtn_tracking_start));
-        historyDisplayBtn = ((ImageButton)  rootView.findViewById(R.id.imagebtn_history));
-        menuBtn = ((ImageButton)  rootView.findViewById(R.id.imagebtn_popmenu));
-        settingBtn = ((ImageButton)  rootView.findViewById(R.id.imagebtn_setting));
-        journeyViewOffBtn = ((ImageButton)  rootView.findViewById(R.id.imagebtn_journey_end));
-        trackingOffBtn = ((ImageButton)  rootView.findViewById(R.id.imagebtn_tracking_end));
+        trackingOnBtn = ((ImageButton) rootView.findViewById(R.id.imagebtn_tracking_start));
+        historyDisplayBtn = ((ImageButton) rootView.findViewById(R.id.imagebtn_history));
+        menuBtn = ((ImageButton) rootView.findViewById(R.id.imagebtn_popmenu));
+        settingBtn = ((ImageButton) rootView.findViewById(R.id.imagebtn_setting));
+        journeyViewOffBtn = ((ImageButton) rootView.findViewById(R.id.imagebtn_journey_end));
+        trackingOffBtn = ((ImageButton) rootView.findViewById(R.id.imagebtn_tracking_end));
         trackingStatusTv = ((TextView) rootView.findViewById(R.id.tv_tracking_status));
         journeyInfoTv = ((TextView) rootView.findViewById(R.id.tv_journey_infomation));
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
@@ -169,12 +148,12 @@ public class MapsFragment extends Fragment implements
         mapView = (MapView) rootView.findViewById(R.id.map);
 
         mapView.onCreate(savedInstanceState != null ? savedInstanceState.getBundle("mapViewSaveState") : null);
-       mapView.onResume();
+        mapView.onResume();
         mServiceIntent = new Intent(getContext(), TrackingService.class);
 
-        View bottomSheet =  rootView.findViewById(R.id.bottom_sheet);
+        View bottomSheet = rootView.findViewById(R.id.bottom_sheet);
 
-        if(viewStatus == -1)
+        if (viewStatus == -1)
             viewStatus = VIEW_NORMAL_KEY;
 
         mBottomSheetBehavior = BottomSheetBehavior.from(bottomSheet);
@@ -182,68 +161,91 @@ public class MapsFragment extends Fragment implements
             @Override
             public void onStateChanged(View bottomSheet, int newState) {
             }
+
             @Override
             public void onSlide(View bottomSheet, float slideOffset) {
             }
         });
 
 
-         menuBtn.setOnClickListener(new View.OnClickListener(){
-             @Override
-             public void onClick(View v){
-                 if(menuBtn.getRotation()==360f)
-                     imagebtnAnimationPopback();
-                 else
-                 imagebtnAnimationPopout();
-             }
-         });
-
-        settingBtn.setOnClickListener(new View.OnClickListener(){
+        menuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                SettingDialogFragment settingDialogFragment = new SettingDialogFragment();
-                settingDialogFragment.show(getFragmentManager().beginTransaction(),"setting");
+            public void onClick(View v) {
+                if (menuBtn.getRotation() == 360f)
+                    imagebtnAnimationPopback();
+                else
+                    imagebtnAnimationPopout();
             }
         });
 
-       trackingOnBtn.setOnClickListener(new View.OnClickListener() {
+        settingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                   startTracking();
+                SettingDialogFragment settingDialogFragment = new SettingDialogFragment();
+                settingDialogFragment.show(getFragmentManager().beginTransaction(), "setting");
+            }
+        });
+
+        trackingOnBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                initPolyline();
+                CustomSharedPreference.setServiceState(true);
+                getContext().startService(mServiceIntent);
+                imagebtnAnimationPopback();
+                menuBtnSlideIn();
+                trackingOffBtn.animate().translationY(-400).setStartDelay(800).setDuration(500);
+                trackingStatusTv.animate().setStartDelay(800).translationY(trackingStatusTv.getHeight());
+                viewStatus = VIEW_TRACKING_KEY;
+                followCurrentPosition(MAX_ZOOM);
             }
         });
 
         trackingOffBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if (!CustomSharedPreference.getServiceState()) {
-                endTracking();
+                getContext().stopService(mServiceIntent);
+                query.insertNewJourneyRecord(
+                        mCurrentJourneyId,
+                        System.currentTimeMillis() - Long.parseLong(mCurrentJourneyId) + "",
+                        query.calculateDistance(mCurrentJourneyId));
+                refreshMap(mMap);
+                CustomSharedPreference.setServiceState(false);
+
+                trackingOffBtn.animate().setStartDelay(0).translationY(0);
+                trackingStatusTv.animate().translationY(0);
+                startViewJourney();
+                redrawPath(FULL_LOCATION_ZOOM);
 
             }
         });
 
-        historyDisplayBtn.setOnClickListener(new View.OnClickListener(){
+        historyDisplayBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 imagebtnAnimationPopback();
                 showBottomSheetDialog();
-                viewStatus = VIEW_JOURNEY_KEY;
+
             }
         });
 
         journeyViewOffBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if (!CustomSharedPreference.getServiceState()) {
-                endViewJourney();
-
+                refreshMap(mMap);
+                menuBtnSlideOut();
+                journeyViewOffBtn.animate().setStartDelay(0).translationY(0);
+                journeyInfoTv.setText(null);
+                mCurrentJourneyId = null;
+                journeyInfoTv.animate().setStartDelay(0).translationY(0);
+                viewStatus = VIEW_NORMAL_KEY;
+                getDeviceLocation();
             }
         });
         return rootView;
     }
 
-    private void imagebtnAnimationPopout()
-    {
+    private void imagebtnAnimationPopout() {
 
         menuBtn.animate().setStartDelay(0).setDuration(300).rotation(360f);
         trackingOnBtn.animate().setStartDelay(0).translationX(300).setDuration(100);
@@ -251,19 +253,16 @@ public class MapsFragment extends Fragment implements
         settingBtn.animate().translationX(900).setStartDelay(0).setDuration(300);
     }
 
-    private void imagebtnAnimationPopback()
-    {
+    private void imagebtnAnimationPopback() {
         menuBtn.animate().setDuration(300).rotation(0);
         settingBtn.animate().translationX(0).setDuration(300);
         historyDisplayBtn.animate().translationX(0).setStartDelay(100).setDuration(200);
         trackingOnBtn.animate().translationX(0).setStartDelay(200).setDuration(100);
 
 
-
     }
 
-    private void startViewJourney()
-    {
+    private void startViewJourney() {
         initPolyline();
         imagebtnAnimationPopback();
         menuBtnSlideIn();
@@ -271,67 +270,24 @@ public class MapsFragment extends Fragment implements
         journeyInfoTv.setText(query.getJourneyInfo(mCurrentJourneyId));
         journeyInfoTv.animate().translationY(journeyInfoTv.getHeight()).setStartDelay(800).setDuration(500);
         //journey information tv
-          // ****
+        // ****
         viewStatus = VIEW_JOURNEY_KEY;
     }
 
-    private void endViewJourney()
-    {
-        refreshMap(mMap);
-        menuBtnSlideOut();
-        journeyViewOffBtn.animate().setStartDelay(0).translationY(0);
-        journeyInfoTv.setText(null);
-        mCurrentJourneyId = null;
-        journeyInfoTv.animate().setStartDelay(0).translationY(0);
-        viewStatus = VIEW_NORMAL_KEY;
-        getDeviceLocation();
-    }
 
-    private void startTracking()
-    {
-        initPolyline();
-        CustomSharedPreference.setServiceState(true);
-        getContext().startService(mServiceIntent);
-        imagebtnAnimationPopback();
-        menuBtnSlideIn();
-        trackingOffBtn.animate().translationY(-400).setStartDelay(800).setDuration(500);
-        trackingStatusTv.animate().setStartDelay(800).translationY(trackingStatusTv.getHeight());
-        viewStatus = VIEW_TRACKING_KEY;
-        followCurrentPosition(MAX_ZOOM);
-    }
-
-    private void endTracking()
-    {
-
-        getContext().stopService(mServiceIntent);
-        query.insertNewJourneyRecord(
-                mCurrentJourneyId,
-                System.currentTimeMillis()-Long.parseLong(mCurrentJourneyId)+"",
-                query.calculateDistance(mCurrentJourneyId));
-        refreshMap(mMap);
-        CustomSharedPreference.setServiceState(false);
-
-        trackingOffBtn.animate().setStartDelay(0).translationY(0);
-        trackingStatusTv.animate().translationY(0);
-        startViewJourney();
-        redrawPath(FULL_LOCATION_ZOOM);
-    }
-
-    private void menuBtnSlideOut(){
+    private void menuBtnSlideOut() {
         menuBtn.animate().translationX(0);
         historyDisplayBtn.animate().translationX(0);
         trackingOnBtn.animate().translationX(0);
         settingBtn.animate().translationX(0);
     }
 
-    private void menuBtnSlideIn()
-    {
+    private void menuBtnSlideIn() {
         menuBtn.animate().translationX(-900).setDuration(300).setStartDelay(300);
         historyDisplayBtn.animate().translationX(-900).setDuration(300).setStartDelay(300);
         trackingOnBtn.animate().translationX(-900).setDuration(300).setStartDelay(300);
         settingBtn.animate().translationX(-900).setDuration(300).setStartDelay(300);
     }
-
 
 
     @Override
@@ -361,32 +317,20 @@ public class MapsFragment extends Fragment implements
     }
 
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        if(viewStatus == VIEW_NORMAL_KEY || viewStatus == VIEW_TRACKING_KEY)
-        getDeviceLocation();
+        if (viewStatus == VIEW_NORMAL_KEY || viewStatus == VIEW_TRACKING_KEY)
+            getDeviceLocation();
         updateLocationUI();
-        Log.d("maponready",viewStatus+"");
-        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener(){
+        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
-            public void onMapClick(LatLng arg0)
-            {
-                if(menuBtn.getRotation()==360f)
-                imagebtnAnimationPopback();
+            public void onMapClick(LatLng arg0) {
+                if (menuBtn.getRotation() == 360f)
+                    imagebtnAnimationPopback();
             }
         });
-        switch(viewStatus)
-        {
+        switch (viewStatus) {
             case VIEW_NORMAL_KEY: {
                 if (mMap != null)
                     getDeviceLocation();
@@ -395,18 +339,17 @@ public class MapsFragment extends Fragment implements
             break;
             case VIEW_TRACKING_KEY:
                 redrawPath(CURRENT_POSITION_ZOOM);
-            break;
+                break;
             case VIEW_JOURNEY_KEY:
                 redrawPath(FULL_LOCATION_ZOOM);
-            break;
+                break;
 
         }
     }
 
 
-    private void moveCameraBounds(LatLngBounds bounds)
-    {
-        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds,200));
+    private void moveCameraBounds(LatLngBounds bounds) {
+        mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 200));
     }
 
     private void getDeviceLocation() {
@@ -415,95 +358,74 @@ public class MapsFragment extends Fragment implements
          * device. The result of the permission request is handled by a callback,
          * onRequestPermissionsResult.
          */
-           {
-                if (ContextCompat.checkSelfPermission(this.getContext(),
-                        android.Manifest.permission.ACCESS_FINE_LOCATION)
-                        == PackageManager.PERMISSION_GRANTED) {
-                    mLocationPermissionGranted = true;
-                } else {
-                    ActivityCompat.requestPermissions(getActivity(),
-                            new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
-                            PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
-                }
+        {
+            if (ContextCompat.checkSelfPermission(this.getContext(),
+                    android.Manifest.permission.ACCESS_FINE_LOCATION)
+                    == PackageManager.PERMISSION_GRANTED) {
+                mLocationPermissionGranted = true;
+            } else {
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION},
+                        PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
+            }
 
         /* Get the best and most recent location of the device, which may be null in rare
         / * cases when a location is not available.
          */
-                             if (mLocationPermissionGranted) {
-                   mLastKnownLocation = LocationServices.FusedLocationApi
-                           .getLastLocation(mGoogleApiClient);
-               }
-
-                // Set the map's camera position to the current location of the device.
-
-               if (mCameraPosition != null) {
-
-                    mMap.moveCamera(CameraUpdateFactory.newCameraPosition(mCameraPosition));
-                } else if (mLastKnownLocation != null) {
-
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
-                            new LatLng(mLastKnownLocation.getLatitude(),
-                                    mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
-                } else {
-
-                    Log.d(TAG, "Current location is null. Using defaults.");
-                    mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
-                    mMap.getUiSettings().setMyLocationButtonEnabled(false);
-                }
+            if (mLocationPermissionGranted) {
+                mLastKnownLocation = LocationServices.FusedLocationApi
+                        .getLastLocation(mGoogleApiClient);
             }
 
-        }
+            // Set the map's camera position to the current location of the device.
 
-        public void followCurrentPosition(float zoom)
-        {
+            if (mCameraPosition != null) {
 
-            if (ContextCompat.checkSelfPermission(this.getContext(),
-                    android.Manifest.permission.ACCESS_FINE_LOCATION)
-                    == PackageManager.PERMISSION_GRANTED) {
-                    mLastKnownLocation= LocationServices.FusedLocationApi
-                            .getLastLocation(mGoogleApiClient);
-                Log.d("getlastlocation","1");
-                if (mLastKnownLocation != null) {
-                    Log.d("getlastlocation","2");
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
-                            new LatLng(mLastKnownLocation.getLatitude(),
-                                    mLastKnownLocation.getLongitude()), zoom));
-                }
+                mMap.moveCamera(CameraUpdateFactory.newCameraPosition(mCameraPosition));
+            } else if (mLastKnownLocation != null) {
 
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(
+                        new LatLng(mLastKnownLocation.getLatitude(),
+                                mLastKnownLocation.getLongitude()), DEFAULT_ZOOM));
+            } else {
+
+                Log.d(TAG, "Current location is null. Using defaults.");
+                mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(mDefaultLocation, DEFAULT_ZOOM));
+                mMap.getUiSettings().setMyLocationButtonEnabled(false);
             }
         }
 
+    }
 
+    public void followCurrentPosition(float zoom) {
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[],
-                                           @NonNull int[] grantResults) {
-        mLocationPermissionGranted = false;
-        switch (requestCode) {
-            case PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    mLocationPermissionGranted = true;
-                }
+        if (ContextCompat.checkSelfPermission(this.getContext(),
+                android.Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            mLastKnownLocation = LocationServices.FusedLocationApi
+                    .getLastLocation(mGoogleApiClient);
+            if (mLastKnownLocation != null) {
+                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
+                        new LatLng(mLastKnownLocation.getLatitude(),
+                                mLastKnownLocation.getLongitude()), zoom));
             }
+
         }
     }
 
-    private void turnoffMyLocation(){
+
+    private void turnoffMyLocation() {
         if (mMap == null) {
             return;
         }
 
         if (ContextCompat.checkSelfPermission(this.getContext(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION)
-                == PackageManager.PERMISSION_GRANTED){
+                == PackageManager.PERMISSION_GRANTED) {
             mMap.setMyLocationEnabled(false);
         }
 
     }
-
 
 
     private void updateLocationUI() {
@@ -536,13 +458,12 @@ public class MapsFragment extends Fragment implements
     }
 
     private void refreshMap(GoogleMap mapInstance) {
-        if(mapInstance != null)
+        if (mapInstance != null)
             mapInstance.clear();
     }
 
 
-    private void redrawPath(int zoomtype)
-    {
+    private void redrawPath(int zoomtype) {
         initPolyline();
         AsyncQueryHandler async;
         final int zoomType = zoomtype;
@@ -550,16 +471,11 @@ public class MapsFragment extends Fragment implements
             @Override
             protected void onQueryComplete(int token, Object cookie, Cursor mCursor) {
                 super.onQueryComplete(token, cookie, mCursor);
-                new drawJourneyAsyncTask(mCursor,zoomType).execute();
+                new drawJourneyAsyncTask(mCursor, zoomType).execute();
             }
         };
-
-
-        Log.d("redraw","1");
-        if(mMap != null && mCurrentJourneyId!=null){
-            Log.d("redraw","2");
-            Log.d("redraw",mCurrentJourneyId);
-            async.startQuery(0,null,JourneyContract.LocationEntry.CONTENT_URI,
+        if (mMap != null && mCurrentJourneyId != null) {
+            async.startQuery(0, null, JourneyContract.LocationEntry.CONTENT_URI,
                     null,
                     JourneyContract.LocationEntry.COLUMN_JOURNEY_ID + "=?",
                     new String[]{mCurrentJourneyId},
@@ -568,7 +484,7 @@ public class MapsFragment extends Fragment implements
 
     }
 
-    private void initPolyline(){
+    private void initPolyline() {
         refreshMap(mMap);
         mPolyLineOption = new PolylineOptions().color(COLOR_GREEN_ARGB).width(20);
     }
@@ -576,16 +492,15 @@ public class MapsFragment extends Fragment implements
 
     private void showBottomSheetDialog() {
 
-        if(getActivity().getContentResolver().query(
+        if (getActivity().getContentResolver().query(
                 JourneyContract.JourneyEntry.CONTENT_URI,
                 null,
                 null,
                 null,
                 null
-        ).getCount()==0) {
-            Toast.makeText(getContext(), "no journey", Toast.LENGTH_SHORT).show();
-        }
-        else {
+        ).getCount() == 0) {
+            Toast.makeText(getContext(), R.string.bottom_sheet_no_journey_toast, Toast.LENGTH_SHORT).show();
+        } else {
 
             if (mBottomSheetBehavior.getState() == BottomSheetBehavior.STATE_EXPANDED) {
                 mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_COLLAPSED);
@@ -629,23 +544,8 @@ public class MapsFragment extends Fragment implements
         }
     }
 
-    private class TrackingBroadCastReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.d("broadcast","received");
-            String local = intent.getExtras().getString("RESULT_CODE");
-            assert local != null;
-            if (mMap != null &&local.equals("LOCAL")) {
-                mCurrentJourneyId = intent.getExtras().getString("JourneyId");
-                drawPath(intent.getExtras().getDouble("CURRENT_LATITUDE"),intent.getExtras().getDouble("CURRENT_LONGITUDE"));
-                followCurrentPosition(MAX_ZOOM);
-            }
-
-        }
-    }
-
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
     }
@@ -653,22 +553,23 @@ public class MapsFragment extends Fragment implements
     @Override
     public void onResume() {
         super.onResume();
-        if (mGoogleApiClient.isConnected()){ //&& mRequestingLocationUpdates) {
-
+        if (mGoogleApiClient.isConnected()) { //&& mRequestingLocationUpdates) {
+            if (mMap != null)
+                getDeviceLocation();
+            updateLocationUI();
         }
-        if(trackingBroadCastReceiver == null){
+        if (trackingBroadCastReceiver == null) {
             trackingBroadCastReceiver = new TrackingBroadCastReceiver();
-            Log.v("get new service","get new service");
+            Log.v("get new service", "get new service");
         }
         IntentFilter filter = new IntentFilter(TrackingService.ACTION);
         LocalBroadcastManager.getInstance(getContext()).registerReceiver(trackingBroadCastReceiver, filter);
     }
 
-
     @Override
     public void onStop() {
         super.onStop();
-     //       mGoogleApiClient.disconnect();
+        //       mGoogleApiClient.disconnect();
         turnoffMyLocation();
     }
 
@@ -679,85 +580,96 @@ public class MapsFragment extends Fragment implements
     }
 
     @Override
-    public void onDestroy(){
+    public void onDestroy() {
+        if (CustomSharedPreference.getServiceState()) {
+            getContext().stopService(mServiceIntent);
+            query.insertNewJourneyRecord(
+                    mCurrentJourneyId,
+                    System.currentTimeMillis() - Long.parseLong(mCurrentJourneyId) + "",
+                    query.calculateDistance(mCurrentJourneyId));
+        }
         super.onDestroy();
-        getContext().stopService(mServiceIntent);
-        query.insertNewJourneyRecord(
-                mCurrentJourneyId,
-                System.currentTimeMillis()-Long.parseLong(mCurrentJourneyId)+"",
-                query.calculateDistance(mCurrentJourneyId));
     }
 
-    private void drawPath(double latitude, double longitude){
-        Log.d(TAG, "draw path on "+latitude+" "+longitude);
+    private void drawPath(double latitude, double longitude) {
+        Log.d(TAG, "draw path on " + latitude + " " + longitude);
         mMap.addPolyline(mPolyLineOption.add(new LatLng(latitude, longitude)));
-        Log.d(TAG, "draw path on "+latitude+" "+longitude);
+        Log.d(TAG, "draw path on " + latitude + " " + longitude);
     }
 
-
-private class drawJourneyAsyncTask extends AsyncTask<Void,Void, List<LatLng>>{
-    LatLngBounds.Builder builder = new LatLngBounds.Builder();
-
-    Cursor mCursor;
-    int zoomType;
-    drawJourneyAsyncTask(Cursor mCursor, int zoomType){this.mCursor = mCursor; this.zoomType = zoomType;}
-
-    @Override
-    protected  void onPreExecute(){
-        progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Fetching location data, please wait...");
-        progressDialog.setIndeterminate(false);
-        // progressDialog.setIndeterminate(true);
-        progressDialog.setCancelable(false);
-        progressDialog.show();
-    }
-
-
-    @Override
-    protected List<LatLng> doInBackground(Void... params) {
-        List<LatLng> mMaplocations = new ArrayList<>();
-
-
-        if (mMap != null ) {
-          ;
-            if(mCursor != null)
-            {
-                if (mCursor.moveToFirst())
-                    while (!mCursor.isAfterLast()) {
-                        mMaplocations.add(query.getLatLng(mCursor));
-                        mCursor.moveToNext();
-                    }
+    private class TrackingBroadCastReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.d("broadcast", "received");
+            String local = intent.getExtras().getString("RESULT_CODE");
+            assert local != null;
+            if (mMap != null && local.equals("LOCAL")) {
+                mCurrentJourneyId = intent.getExtras().getString("JourneyId");
+                drawPath(intent.getExtras().getDouble("CURRENT_LATITUDE"), intent.getExtras().getDouble("CURRENT_LONGITUDE"));
+                followCurrentPosition(MAX_ZOOM);
             }
         }
-        return mMaplocations;
     }
 
-    @Override
-    protected void onPostExecute(List<LatLng> mMapLocations)
-    {
+    private class drawJourneyAsyncTask extends AsyncTask<Void, Void, List<LatLng>> {
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
-        super.onPostExecute(mMapLocations);
-        Cursor cursor;
-        initPolyline();
-        for(LatLng mMapLocation : mMapLocations)
-        {
-            mMap.addPolyline(mPolyLineOption.add(mMapLocation));
-            builder.include(mMapLocation);
+        Cursor mCursor;
+        int zoomType;
+
+        drawJourneyAsyncTask(Cursor mCursor, int zoomType) {
+            this.mCursor = mCursor;
+            this.zoomType = zoomType;
         }
-        LatLngBounds bounds = builder.build();
-       //
-        progressDialog.hide();
 
-        switch (zoomType)
-        {
-            case CURRENT_POSITION_ZOOM:
-                followCurrentPosition(MAX_ZOOM);
-            case FULL_LOCATION_ZOOM:
-                moveCameraBounds(bounds);
+        @Override
+        protected void onPreExecute() {
+            progressDialog = new ProgressDialog(getContext());
+            progressDialog.setMessage("Fetching location data, please wait...");
+            progressDialog.setIndeterminate(false);
+            // progressDialog.setIndeterminate(true);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
         }
 
 
+        @Override
+        protected List<LatLng> doInBackground(Void... params) {
+            List<LatLng> mMaplocations = new ArrayList<>();
 
+
+            if (mMap != null) {
+                ;
+                if (mCursor != null) {
+                    if (mCursor.moveToFirst())
+                        while (!mCursor.isAfterLast()) {
+                            mMaplocations.add(query.getLatLng(mCursor));
+                            mCursor.moveToNext();
+                        }
+                }
+            }
+            return mMaplocations;
+        }
+
+        @Override
+        protected void onPostExecute(List<LatLng> mMapLocations) {
+
+            super.onPostExecute(mMapLocations);
+            initPolyline();
+            for (LatLng mMapLocation : mMapLocations) {
+                mMap.addPolyline(mPolyLineOption.add(mMapLocation));
+                builder.include(mMapLocation);
+            }
+            LatLngBounds bounds = builder.build();
+            progressDialog.hide();
+            switch (zoomType) {
+                case CURRENT_POSITION_ZOOM:
+                    followCurrentPosition(MAX_ZOOM);
+                case FULL_LOCATION_ZOOM:
+                    moveCameraBounds(bounds);
+            }
+
+
+        }
     }
-}
 }

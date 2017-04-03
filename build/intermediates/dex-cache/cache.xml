@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\0b80943531b564caf59433471af25ab0717aecee\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a3e61044038fb54cddf6b8dc79f41d2b57f42caf">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b779218a0066a0661c57e2968b6a2b77869d447e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\30ebc66112cb211679b9d648dc6c98c0cb7d1c04\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_345c5fb0e1835eebeaa806607ced6d0439f032ec\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\59dcfaf6e3198dfed6cc88b63be8496b6a593d21\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b327fbe2fad414bc38cf0ce8f7efe1a38f572837">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f0fbafccac12ec16158cf673b7614a9589af2ac6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\255791672c7a92c579659fd3811abfa08fbf7bbc\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="734e80dffea7bd76c18ae256822a124c30d85850">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5066f3f4aa79a05d9655962adc2c7c622b3ccfeb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\10839b00c365e6455b364713641b4f79fbd5068a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f23ad0f8e58713ff4b55f61c0bbde3830378347c">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1581239e7a3a5c09bca5742efac238bd7c1ec263\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\2996d9c523cc5907191ffd65abb79ec5c70758ba\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="93c10d68ab5ea070f15782ae6d3a28d1f1d8f45e">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_52470b0e4584b0b86c34dac7d6cbc0c02777e6c5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\6f13fd398eeb24b93be0f834b2156924e86c02cb\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2786cab59585d6a4b62dd4cf9a03b06df6b890b7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\d68a9d0e1afccae22d23855eeb2ff4dce97160b0\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ba6aa5e69ef31dee57208125323cee958fc67565">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_759c39d68d391895720cfac6067f334286622582\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\0e2d95153bfbcee6df84b0149fa104aef48c687f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4385ccc0a88b33d182a836eadb47be55c8eb1107">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_687d3c324288ee08cf71b868c371d18e9a7172bc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\cca4e5f97ff7b109ff666aa9b5447e04a5bfecdd\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9ab787a20aae245b5b3651ae0b9c38459eb37715">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_6a7bee68de81dc7ae8cc5c4f2940a7f5da096f40\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\0869f632b123b8aece7058e36b27bbaa14d50ef3\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8010ae6ed32828a145b25ec97bc07b7a83c6318f">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c55690090c05746389248d56a4bdfd9108992170\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\9848abb8d7e9cb9ea3989c3d62c3c92d151e442f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="425c7b17887e5c3f8cbdf67ba171bc246f29b42c">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1ce294d5707cc8ce6707500341303fe0bc160dd6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\5f6a57e53c8cf726ece559af5b23f2baa0106ccb\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4c829ff0ccfecb28a999ee46d9e75948dfc777a4">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5a894e94f8e3beebe9715c5dcaf51b111d5049bb\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\5f48844da52488330dd2ab2a3c3d7add336961fb\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6bb5d347ebc0c6ef3c83a905222a688da5d2f7b4">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_5b7de9553467f17e4110c37364a4cbb67af99329\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\2cb51a96d3211b1e97d50ef07e19e80b6da3704c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="a48dc0b148059764d32500be558702d5ff932058">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d45e843215de60782f2ff1dc4ff9dff3bb3187a0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\7271962b7c72d5f408a0c59b1994ab4e7ced10a2\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ffc15e965a9e8c28f24455eedd4cac215c45d1fc">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a8ee830f8e8c151cca0fc46996300a6ba02cb9b4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\d3d7904c727f859e08aa281c730215d96b915314\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c14f0c89f28cf782e42581ab0aba5f63af39b3d2">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_16e832780596f9d73c83afc8d21085022812ffb0\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\2649c59059d302d995cf1abe33875ac5f4424ba8\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1e11c68fec92a17c84dd8d1dd80e74c4e67b12e2">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_fcc897b62314ca49dbdb8bad465b1cb1c2eba33b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\4998fc4bd2ff240b6985830c3a34e72704efa036\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c5e6490573cd2cc8018417f60ddd251138b6ed61">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_390c5b4fa94a381bb183f71f3310c7fb52034702\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\a9dec2bc20c9fd6935674f8e95401b7ac41d1ca2\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e2185aff89caeb337b1ffc36d5e525d8318e7cfe">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_432f787f130af3ba7a5664f19dad9d119e6a5250\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\c9a53ac028675c746b3aecfc0390675140e2e440\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4b746ef0fd46acb5aaf3d9ab9a4cec22c28d3211">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f605375aed5e7cb0b188b539289cdb34e3a22b10\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\3f18dde38a36ab73e0198158d66421a031796fdf\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="1d193729baf37df3d902a423291423a0df7e3779">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c288008f71df9f054426aad8750773b0ab71f265\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\2ab338446934d1be313149c26f393c5d5b604d7a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b955cb3a1ad6f1b6ff728ce1e0cd592c1717b440">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_28dac1e2efded97d109118b1b2dd06d7ccfe0a4a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\152434ee08ad67e477d28ab0c173c634cc55c74f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="27777b3cad3c20b1acab19f6e37fe3e03371bf6e">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f59f42d83c94c510b84057a080ea1aba00358010\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\b86c7d20773dd17556629cf84de23e2744f03e82\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b0fa517c68d55f77dfecf85adbfec8cec9095947\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\1d68633a47487cba78efba98ab514a334510dd73\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d6a04527c17597019dad82777c5094a3d60d1c33">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_fd30f55e3eeae0d110033d943066b174d94f13c9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\6e30701d4294b1441b9b10f0afd3ef9f9cce8877\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="70f23cb87278f89aa51e6f57e8f0fd5266572d95">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_86394f3136d73f9f89b8dffbfba6ddcea4288f2a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\43466a0540b7b74b95fb5a936920588f1187fd73\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="45305e6af414dab5aba6c3225081c2f15c3bdd1e">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_4d17269ad567c5922d20550da90956e718848901\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\d5901bc93900b95eda9b1c82e1bbab3d271caaa4\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="44a694d4095be84c2888764b1f7256b385c030ad">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_328f7729cda0f6e16312e0730f7a41863306086b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\b612c18f4015e4d609087fe23e5ed45d76c8c04d\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f686eddab8b493028933f1ebf342a7af7c66c18a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\b04dc8a727babb2281ef5bcc8310d000ce0c2c32\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="dd39827d2067497e60e21da48a7926000b6d4b0c">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2a94ee1c2a3c1a476dc668484665b058109c8272\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\1a47012019ae2995d994e93573415715aa82c5c5\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b1df8fa3d372a27e4e969ce00b00689ee1eed031">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_81a31dcd12791c61a7cf1e5ccbe27a8fd9d234ff\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\935520dbe8615d01f12d385478c9dd1b8ca74033\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="518768f3200963fbfec652f498da2c9d39245234">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_37ead615981b472514a06ff683493a67b4729588\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\39b3da1210683051926f3402c8ef0e10d1796cee\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a264038af5d06392daa2ec0d16f93f56adccae86\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\6cda973eab06a61a8027ef29b22027081bc021c8\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="df1cb17511aabbb63264a0024949d1e42502a512">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a23eaa233ff39c5572f40bf5816f40e008670e54\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\348000972b2707ea14bba9bc45096c5f87a6720c\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e96c6974cf924e7ee3b230e6847d5731423388c9">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7ea52b3d441717492b19d66c8847371c67e3f6c1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\59dcfaf6e3198dfed6cc88b63be8496b6a593d21\output\jars\libs\internal_impl-24.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="b6763651ec29b4c95e7bbe63fc393ffcc8c4c2c5">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\internal_impl-24.0.0_a27fbf04e301a5dac64a37c66fac60472b89aa05\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\9cb6fb5872d5f333a50e454ed97420c5288650fd\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="92c871a22463a247e8a77a9f3fd231c278788c4a">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_13ec957c2c989d34cc00c3989591951009bc1ee4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\1ff0f38f4330d7facf05b8e47c94bd20e4d34804\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="fbb206f7a119f66ce171d95aae1225a5b209a8b7">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_14b93bfb657d65cfd45115b87616bf61a47b5e58\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\3ee0e66e3a70509f1a14b5506f863e3a5e3746ef\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="771267c5b0c7a5b348d3205dcfa1f871af7e0177">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2b15824d6696d2acff255b7e0351ba40a2d47bdd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\4f90a1c5d8095912c45d6c52603bfadca0b6b62f\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d0460bf07cc3657e0be518ca01c174493951c6b8">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_effb0b772939c05da8dac8e1ebaf2209a0679fa3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\561bfe9a0c08e94c677e4b7f0cc169e6ab520331\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="2d5d113b0352ab60946fc44c518cf68fd26cbb79">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_bea4bcd25e7c2e3cea6aa0018b0c0011039361f9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\20440a035ba6b59af6e051f46afe3f80443e7a22\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d48d0d8f7e0e8ab220bd824a2c30133a0fb012b4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\1bad5a970d1867c061ab0d933af99ce9c015f072\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8f128aeeb7e31271b28a7adb9dac1f3a6ed9f5e7">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3c9cdd4232131e51043c7239bb90af94fdc3d4a3\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\7f03fe1c5d2f3be7da27399d089b2e904b605889\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="de29a39f9260f88151b1ef453140e71c76b6c415">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_de994ca56a2bf6138ac107d72167dcc6137e211f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\2f55f203a81d84e6dffe7214830df98045239e2d\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c6e1f361e9d61aece9dac39b77fcc98a337a144d">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e58fe4d8cca9d42fa4b15939e022e0ee8958c824\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\59b61ba4187720528f0a97ce7859286057822471\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f6cf557be4dbd0282ea2388633e5378634423226">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8689e6032653f73a58333e108b80368001bfeaab\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\025facdfb3e2c75a6adb42bcb4bcb700f2937ca5\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="ae80d328a8548b4610ead6c624bab8c6a6984f5b">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f82ec2d57f52d5cc742e847aa6e81e4f2472f4f8\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\9a75163a19afb0560bae9875b30f90af1832e08b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6666dd525c3da197e7d07f4f23ef5fc7881a697b">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a4cb4948b3c6be7a73769ce820f61d42b9c084c2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\82411456ff53081c2df67eba55410eb2cda1a991\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4b17463c814bdc562fb0392fa3494063623a0904">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_dd628f62f82ee7dc7ad69cde7f39c1672698723d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\8f00c80c3a46faa69c9e6c16f9824609035da558\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="7a64bf6dc775198eed9db9468a133adf7dfe6562">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_34e54142fcaf95ce72f2297d9915554d318f958b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\4edccf7a1375b2fd8d0b24efacee1690e1c142b9\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_52713cb8c488c744a169d8177ae1d27667430e90\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\0b484a4749c2b767831f20b31ad1eaf7a60b894a\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_bcc4f4f266c21125a4280e6acbcce678de3422f4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\04dd4c69df28b5483c1f9dcfdbd9dafb6e2f35ac\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="57c2eceb8548de84509d1ebc293fedec53231f6c">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f96ede05204dd1910f1e88d37ead743d368e7db6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\1290251b866b62ba1d13186c99c8ffb434e0feb9\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d98b0dd7a28085d9256c17e279dff230f550ce32\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\db2e83934f7cc575d48610d61878172d59439895\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="93c1199fcb0a34b980e6fff8350daff62e696ec2">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_99c19faac301a3b89aa6944aea0a20e92af0f9a1\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\c7069e96643760e85bd7a723ad65b98d1a591501\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="028f8255cb977b29cdffbfcf05caa0459686120c">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_2aec06f6c988cabb79c77d39657dfc8b5cb69356\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\fc2e61c637a10139b39f55e05ebd17ae41be920b\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="5cc5ef8347a6bafa14556cbd35230aa9b3431bb0">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_88c65c643e5f85c88cafe3f9584bc7e237d5ccda\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\0cb6267452a3b3bf03019fc1ffebda851724e522\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="408a599ac77cd17fe8e8919326bec617b3d005bd">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8c37873c89a27914f9495e1d9811f809acf5196e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\99572ae43fa379c629e79bbe5b389f26547fa3fb\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="8308ed003522a2ee8958311afcc4cfd0470377cd">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b28dda7cef5eae0616e9cd18e11d7246efd9be16\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\d50f837973135583db17a035d9a8915488e00a68\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="971509bbe30bb7b971fc1c49d7b23d0d818830ac">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_de0c92ea0472eba0d5e528793dc7c72784598289\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\28deb75092466ea4aae76bef0e6caf3e6712ee15\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="e871881b36b32e6bfd271a830c6eeb54ff0fc185">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d88259c3ab78ca2572521df9414db98cbdbd0e98\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\76593321c026641e1c8266e166a82f14693eedec\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="f3e51e9c5233b8897f61e08a6a27bc36283c2724">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_544bed6993274b8ef7c4b2fad0fb7c301ac336aa\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\a9e3b8b0509edda7b85163af7b42ffcc45da56c3\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="09cf6aa1390f95157e8295d02be7868f568825fc">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c2285248587064b41c05701c902085f7bfa1d181\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\017\.android\build-cache\0c0d09eb38fd94a023f3daf94e251dfeec3dcfa7\output\jars\classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="25.0.0"
+        sha1="39907d5c8f5902fffef30160ca7447c93b82405c">
+        <dex dex="C:\Users\017\AndroidStudioProjects\RouteTracking\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_61936eb372cbf8deb42bf5cc937b463c6130fca3\classes.dex" />
+    </item>
+
+</items>
